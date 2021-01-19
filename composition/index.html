@@ -74,13 +74,12 @@
     </div>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
-      const { createApp } = Vue;
+      const { createApp , ref} = Vue;
 
       const app = createApp({
-        data() {
-          return {
-            product: {
-              name: "Canasta",
+        setup(){
+          const product = ref({
+            name: "Canasta",
               price: 450_000,
               stock: 5,
               content: "LOrem ipsum",
@@ -96,42 +95,18 @@
               ],
               new:true,
               offer:true
-            },
-            cartOpen: true,
-            activeImage: 1,
-            cart:[{name: "Camara led",
-              price: 410_000,
-              stock: 1,
-              content: "LOrem ipsum",
-              images: [
-                {
-                  image: "./images/camara.jpg",
-                  thumbnail: "./images/camara-thumb.jpg",
-                },
-                {
-                  image: "./images/camara-2.jpg",
-                  thumbnail: "./images/camara-2-thumb.jpg",
-                },
-              ],
-              new:true,
-              offer:true},{name: "camara mala",
-              price: 480_000,
-              stock: 1,
-              content: "LOrem ipsum",
-              images: [
-                {
-                  image: "./images/camara.jpg",
-                  thumbnail: "./images/camara-thumb.jpg",
-                },
-                {
-                  image: "./images/camara-2.jpg",
-                  thumbnail: "./images/camara-2-thumb.jpg",
-                },
-              ],
-              new:true,
-              offer:true}]
-          };
-        },
+          });
+          const activeImage= ref(0);
+          const cartOpen=ref(false);
+          const cart = ref([]);
+          setTimeout(()=>{
+            activeImage.value=1;
+          },2000);
+          return {
+            product, cartOpen,cart,activeImage
+          }
+        }
+      
       });
       app.mount("#app");
     </script>
